@@ -10,7 +10,7 @@ endif
 " Keywords
 syn keyword ceuLangKeywords var input await class in break
                           \ end do finalize native spawn
-                          \ every loop escape NULL
+                          \ every loop escape NULL pool
                           \ if else par or and with
 
 " Types
