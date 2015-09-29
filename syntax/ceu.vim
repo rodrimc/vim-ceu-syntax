@@ -8,7 +8,7 @@ if exists("b:current_syntax")
 endif
 
 " Keywords
-syn keyword ceuLangKeywords var input await class
+syn keyword ceuLangKeywords var input await class in
                           \ end do finalize native
                           \ every loop escape NULL
                           \ if else par or and with
