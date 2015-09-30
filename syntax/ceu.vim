@@ -12,6 +12,14 @@ syn keyword ceuLangKeywords var input await class in break
                           \ end do finalize native spawn
                           \ every loop escape NULL pool
                           \ if else par or and with
+                          \ async thread atomic call
+                          \ continue data emit event
+                          \ false FOREVER function global
+                          \ output interface interrupt
+                          \ kill new not nothing null
+                          \ outer pause return request
+                          \ sizeof sync tag then this    
+                          \ true until watching 
 
 " Types
 syn keyword ceuTypes bool byte char f32 f64
@@ -21,35 +29,35 @@ syn keyword ceuTypes bool byte char f32 f64
 
 " Match
 syn match cBind "\<\(_[^ ()\*&?\,]*\)"
-syn match ceuNumber '\d\+' 
-syn match ceuNumber '[-+]\d\+' 
+syn match ceuNumber '\<\d\+\>' 
+syn match ceuNumber '\<[-+]\d\+\>' 
 
 " Floating point number with decimal no E or e (+,-)
-syn match ceuNumber '\d\+\.\d*'
-syn match ceuNumber '[-+]\d\+\.\d*'
+syn match ceuNumber '\<\d\+\.\d*\>'
+syn match ceuNumber '\<[-+]\d\+\.\d*\>'
 "
 " Floating point like number with E and no decimal point (+,-)
-syn match ceuNumber '[-+]\=\d[[:digit:]]*[eE][\-+]\=\d\+' 
-syn match ceuNumber '\d[[:digit:]]*[eE][\-+]\=\d\+'
+syn match ceuNumber '\<[-+]\=\d[[:digit:]]*[eE][\-+]\=\d\+\>' 
+syn match ceuNumber '\<\d[[:digit:]]*[eE][\-+]\=\d\+\>'
 "
 " Floating point like number with E and decimal point (+,-)
-syn match ceuNumber '[-+]\=\d[[:digit:]]*\.\d*[eE][\-+]\=\d\+'
-syn match ceuNumber '\d[[:digit:]]*\.\d*[eE][\-+]\=\d\+' 
+syn match ceuNumber '\<[-+]\=\d[[:digit:]]*\.\d*[eE][\-+]\=\d\+\>'
+syn match ceuNumber '\<\d[[:digit:]]*\.\d*[eE][\-+]\=\d\+\>' 
 
 " Hexadecimal number
 syn match ceuNumber "\<0[xX]\([0-9A-Fa-f]\)*\>"  
 
 " Regions
 syn region ceuBlock start="do" end="end" fold transparent
-syn region ceuPreProc start="^\s*\(#\)" end=" "
+syn region ceuPreProc start="^\s*\(#\)" end="\>"
 syn region ceuString start="\"" end="\""
 syn region ceuComment start="\/\*" end="\*\/" contains=ceuTodo
+syn region ceuAnnotation start="@" end="\>"
 
 " Comments
 syn keyword ceuTodo contained TODO FIXME NOTE
 syn match ceuComment "//.*$" contains=ceuTodo
 
-let b:current_syntax = "ceu"
 
 hi def link ceuLangKeywords Statement
 hi def link ceuTodo         Todo
@@ -59,3 +67,7 @@ hi def link cBind           Special
 hi def link ceuPreProc      PreProc
 hi def link ceuNumber       Number
 hi def link ceuString       String
+hi def link ceuAnnotation   Identifier 
+
+
+let b:current_syntax = "ceu"
